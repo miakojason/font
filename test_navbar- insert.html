@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用JavaScript加载内容</title>
+</head>
+
+<body>
+
+
+
+<!-- 页眉容器 -->
+<div id="headerContainer"></div>
+
+<!-- 内容区域 -->
+<main>
+    <h2>主要内容区域</h2>
+    <p>这里是主要内容。</p>
+</main>
+
+<!-- 页脚容器 -->
+<div id="footerContainer"></div>
+
+<script>
+    // 使用 JavaScript 加载导航、页眉和页脚
+    window.addEventListener('DOMContentLoaded', function () {
+        loadContent('nav.html', 'navContainer');
+        // loadContent('header.html', 'headerContainer');
+        // loadContent('footer.html', 'footerContainer');
+    });
+
+    function loadContent(url, containerId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById(containerId).innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+</script>
+
+</body>
+</html>
